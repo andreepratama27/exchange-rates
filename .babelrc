@@ -1,0 +1,19 @@
+{
+  "presets": ["react", "env"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@assets": "./src/assets",
+          "@components": "./src/components",
+          "@src": "./src",
+          "@scenes": "./src/scenes",
+          "@services": "./src/services",
+          "@styles": "./src/styles"
+        }
+      }
+    ]
+  ]
+}
