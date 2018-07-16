@@ -1,6 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
+import { deleteCard } from "@scenes/home/actions/";
 
-const GridRates = () => {
+const mapDispatchToProps = dispatch => ({
+  deleteCard(data) {
+    dispatch(deleteCard(data));
+  }
+});
+
+const GridRates = ({ code, name, deleteFunc }) => {
   return (
     <div className="card card-rates no-shadow">
       <div className="card-content">
@@ -8,25 +16,29 @@ const GridRates = () => {
           <div className="media-content">
             <div className="currency">
               <div className="currency-top">
-                <div className="currency-top__box">IDR</div>
-                <div className="currency-top__bottom">144,104.5</div>
+                <div className="currency-top__box">{code}</div>
+                <div className="currency-top__bottom">0</div>
               </div>
 
               <div className="currency-middle">
                 <div className="currency-middle__text">
-                  <strong>IDR = Indonesian Rupiah</strong>
+                  <strong>
+                    {code} = {name}
+                  </strong>
                 </div>
               </div>
 
               <div className="currency-bottom">
                 <div className="currency-bottom__text">
-                  <i>1 USD = 14,410.50</i>
+                  <i>1 {code} = 0</i>
                 </div>
               </div>
             </div>
           </div>
           <div className="media-right">
-            <button className="button is-warning">-</button>
+            <button className="button is-warning" onClick={deleteFunc}>
+              -
+            </button>
           </div>
         </div>
       </div>
@@ -34,4 +46,4 @@ const GridRates = () => {
   );
 };
 
-export default GridRates;
+export default connect(mapDispatchToProps)(GridRates);

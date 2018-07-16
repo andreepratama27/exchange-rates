@@ -7,7 +7,8 @@ export const API = () => {
     headers: {
       Accept: "application/json",
       Content: "application/json",
-      "X-Requested-With": "XMLHttpRequest"
+      "X-Requested-With": "XMLHttpRequest",
+      "Access-Control-Allow-Origin": "*"
     }
   });
 };

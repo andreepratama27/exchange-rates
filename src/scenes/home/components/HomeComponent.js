@@ -1,9 +1,21 @@
 import React, { Component, Fragment } from "react";
 import Modal from "@components/Modal";
 import GridRates from "@components/GridRates";
+import { API } from "@src/services/APIServices";
 
 class HomeComponent extends Component {
+  componentDidMount() {}
+
+  _deleteCard(card) {
+    this.props.deleteCard(card.code);
+  }
+
   render() {
+    const {
+      modal: { show },
+      home: { card, rates }
+    } = this.props;
+
     return (
       <Fragment>
         <nav
@@ -40,15 +52,30 @@ class HomeComponent extends Component {
         </main>
 
         <main className="column content card-wrapper">
-          <GridRates />
+          {card.length ? (
+            card.map((v, keys) => (
+              <GridRates
+                {...v}
+                key={keys}
+                deleteFunc={() => this._deleteCard(v, keys)}
+              />
+            ))
+          ) : (
+            <div className="message is-primary">
+              <div className="message-body">Card not found</div>
+            </div>
+          )}
         </main>
         <div className="button-wrapper">
-          <button className="button is-primary is-fullwidth btn-submit">
+          <button
+            className="button is-primary is-fullwidth btn-submit"
+            onClick={() => this.props.showModal()}
+          >
             (+) Add more currencies
           </button>
         </div>
 
-        <Modal />
+        <Modal active={show} rate={rates} {...this.props} />
       </Fragment>
     );
   }
