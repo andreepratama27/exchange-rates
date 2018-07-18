@@ -1,12 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { deleteCard } from "@scenes/home/actions/";
-
-const mapDispatchToProps = dispatch => ({
-  deleteCard(data) {
-    dispatch(deleteCard(data));
-  }
-});
 
 const GridRates = ({ code, name, money, latest, deleteFunc }) => {
   return (
@@ -50,4 +42,4 @@ const GridRates = ({ code, name, money, latest, deleteFunc }) => {
   );
 };
 
-export default connect(mapDispatchToProps)(GridRates);
+export default GridRates;

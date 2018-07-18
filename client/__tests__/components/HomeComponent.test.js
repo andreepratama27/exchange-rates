@@ -1,5 +1,10 @@
-describe("Init Home Component", () => {
-  it("expect 2 + 2 = 4", () => {
-    expect(2 + 2).toBe(4);
+import React from "react";
+import { shallow } from "enzyme";
+import "./../jestsetup";
+
+describe("Make sure test running", () => {
+  test("render a label", () => {
+    const wrapper = shallow(<label>Andre</label>);
+    expect(wrapper).toMatchSnapshot();
   });
 });
