@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HomeComponent from "@scenes/home/components/HomeComponent";
 import { showModal, hideModal } from "@src/actions";
-import { addCard, deleteCard } from "@scenes/home/actions";
+import { addCard, deleteCard, latestRates } from "@scenes/home/actions";
 
 const mapStateToProps = state => ({
   home: state.home,
@@ -24,6 +24,10 @@ const mapDispatchToProps = dispatch => ({
 
   deleteCard(data) {
     dispatch(deleteCard(data));
+  },
+
+  getLatest(data) {
+    dispatch(latestRates(data));
   }
 });
 

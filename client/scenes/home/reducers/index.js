@@ -1,46 +1,58 @@
 import * as types from "@src/constants/actionTypes";
 
 const initialState = {
+  local: [],
+  latest: [],
   rates: [
     {
       code: "USD",
-      name: "United States Dollar"
+      name: "United States Dollar",
+      money: 0
     },
     {
       code: "CAD",
-      name: "Canada Dollar"
+      name: "Canada Dollar",
+      money: 0
     },
     {
       code: "IDR",
-      name: "Indonesia Rupiah"
+      name: "Indonesia Rupiah",
+      money: 0
     },
     {
       code: "GBP",
-      name: "British Poundsterling"
+      name: "British Poundsterling",
+      money: 0
     },
     {
       code: "CHF",
-      name: "Switzerland Franc"
+      name: "Switzerland Franc",
+      money: 0
     },
     {
       code: "SGD",
-      name: "Singapore Dollar"
+      name: "Singapore Dollar",
+      money: 0
     },
     {
       code: "INR",
-      name: "India Rupee"
+      name: "India Rupee",
+      money: 0
     },
     {
       code: "MYR",
-      name: "Malaysia Ringgit"
+      name: "Malaysia Ringgit",
+      money: 0
     },
     {
       code: "JPY",
-      name: "Japan Yen"
+      name: "Japan Yen",
+      money: 0
     },
     {
       code: "KRW",
-      name: "Korea Won"
+      name: "Korea Won",
+      money: 0
     }
   ],
   card: []
@@ -54,8 +66,18 @@ const reducers = (state = initialState, action) => {
       });
     }
 
+    case types.LATEST_RATES: {
+      return {
+        ...state,
+        latest: action.data.rates,
+        local: action.data.rates.IDR
+      };
+    }
+
     case types.ADD_CARD: {
       let findData = state.rates.find(v => v.code === action.data.rate) || {};
+      findData.money = action.data.money;
+
       return {
         ...state,
         card: [...state.card, findData]
@@ -63,11 +85,16 @@ const reducers = (state = initialState, action) => {
     }
 
     case types.DELETE_CARD: {
-      let deleteCard = state.card.find(v => v.code !== action.data) || [];
+      let deleteCard = state.card.find(v => v.code !== action.data);
+
+      console.log(
+        "delete card",
+        typeof deleteCard === "undefined" ? "yes" : "false"
+      );
 
       return {
         ...state,
-        card: [deleteCard]
+        card: typeof deleteCard === "undefined" ? [] : [deleteCard]
       };
     }
 

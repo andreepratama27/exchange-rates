@@ -7,12 +7,12 @@
       {
         "root": ["./"],
         "alias": {
-          "@assets": "./src/assets",
-          "@components": "./src/components",
-          "@src": "./src",
-          "@scenes": "./src/scenes",
-          "@services": "./src/services",
-          "@styles": "./src/styles"
+          "@assets": "./client/assets",
+          "@components": "./client/components",
+          "@src": "./client",
+          "@scenes": "./client/scenes",
+          "@services": "./client/services",
+          "@styles": "./client/styles"
         }
       }
     ]

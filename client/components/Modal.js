@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { hideModal } from "@src/actions";
 import { addCard } from "@scenes/home/actions";
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  home: state.home
+});
 
 const mapDispatchToProps = dispatch => ({
   addCard(data) {
@@ -22,9 +24,13 @@ class Modal extends React.Component {
   }
 
   _listenChangeRates(e) {
-    console.log("dari modal", e.target.value);
+    const {
+      home: { latest }
+    } = this.props;
+
     this.props.addCard({
-      rate: e.target.value
+      rate: e.target.value,
+      money: latest[e.target.value]
     });
   }
 

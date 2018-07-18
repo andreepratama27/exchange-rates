@@ -5,11 +5,11 @@ const htmlWebpack = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, "index.js")
+    main: path.resolve(__dirname, "client", "index.js")
   },
 
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "public"),
     filename: "bundle.js"
   },
 
@@ -43,7 +43,7 @@ module.exports = {
 
   plugins: [
     new extractTextWebpack({
-      filename: "style.[chunkhash].css",
+      filename: "style.css",
       disable: false,
       allChunks: true
     }),
@@ -51,7 +51,7 @@ module.exports = {
     new htmlWebpack({
       inject: false,
       hash: true,
-      template: "./src/index.html",
+      template: "./views/index.html",
       filename: "index.html"
     })
   ]

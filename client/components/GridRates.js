@@ -8,7 +8,7 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-const GridRates = ({ code, name, deleteFunc }) => {
+const GridRates = ({ code, name, money, latest, deleteFunc }) => {
   return (
     <div className="card card-rates no-shadow">
       <div className="card-content">
@@ -17,7 +17,9 @@ const GridRates = ({ code, name, deleteFunc }) => {
             <div className="currency">
               <div className="currency-top">
                 <div className="currency-top__box">{code}</div>
-                <div className="currency-top__bottom">0</div>
+                <div className="currency-top__bottom">
+                  {parseFloat(latest[code]).toFixed(2)}
+                </div>
               </div>
 
               <div className="currency-middle">
@@ -30,7 +32,9 @@ const GridRates = ({ code, name, deleteFunc }) => {
 
               <div className="currency-bottom">
                 <div className="currency-bottom__text">
-                  <i>1 {code} = 0</i>
+                  <i>
+                    1 USD = {code} {parseFloat(money).toFixed(2)}
+                  </i>
                 </div>
               </div>
             </div>

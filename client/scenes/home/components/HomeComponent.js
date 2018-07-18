@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import Modal from "@components/Modal";
 import GridRates from "@components/GridRates";
-import { API } from "@src/services/APIServices";
 
 class HomeComponent extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getLatest();
+  }
 
   _deleteCard(card) {
     this.props.deleteCard(card.code);
@@ -13,7 +14,7 @@ class HomeComponent extends Component {
   render() {
     const {
       modal: { show },
-      home: { card, rates }
+      home: { card, rates, local, latest }
     } = this.props;
 
     return (
@@ -47,7 +48,11 @@ class HomeComponent extends Component {
           </div>
           <div className="rates-value">
             <div className="rates-value__box">USD</div>
-            <div className="rates-value__box">10.000,-</div>
+            <div className="rates-value__box">
+              {parseFloat(local).toFixed(2) === "NaN"
+                ? 0
+                : parseFloat(local).toFixed(2)}
+            </div>
           </div>
         </main>
 
@@ -57,6 +62,7 @@ class HomeComponent extends Component {
               <GridRates
                 {...v}
                 key={keys}
+                latest={latest}
                 deleteFunc={() => this._deleteCard(v, keys)}
               />
             ))
