@@ -1,5 +1,3 @@
-# Here I provide project for entry test purpose in Shopee.
-
 There several list how to work in my project:
 
 ```sh
